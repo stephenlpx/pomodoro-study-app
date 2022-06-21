@@ -19,18 +19,30 @@ LONG_BREAK_MIN = 20
 
 window = Tk()
 window.title("Pomodoro study tool")
-window.config(padx=100, pady=50)
+window.config(padx=100, pady=50, bg=YELLOW)
 
 #create canvas and saves the image directory
-canvas = Canvas(width=200, height=224)
+canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
 tomato_img = PhotoImage(file="tomato.png")
 
 #create the image and text on the canvas
-canvas.create_image(102,112, image=tomato_img)
-canvas.create_text(102,112, text="00:00")
+canvas.create_image(100,112, image=tomato_img)
+canvas.create_text(103,130, text="00:00", fill="white", font=(FONT_NAME, 30, "bold"))
 
+#labels
+timer_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=("Calibri", 24,"bold"))
+timer_label.grid(column=2,row=0)
+check_mark_label = Label(text="✔", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 16, "normal"))
+check_mark_label.grid(column=2, row=3)
 
-canvas.pack()
+#buttons
+start_button = Button(text="Start")
+start_button.grid(column=1, row=3)
+reset_button = Button(text="Reset")
+reset_button.grid(column=3, row=3)
+
+#canvas grid (the image)
+canvas.grid(column=2, row=2)
 
 
 
