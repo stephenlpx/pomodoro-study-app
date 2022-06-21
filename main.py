@@ -1,4 +1,4 @@
-from tkinter import Tk, Label
+from tkinter import *
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -19,5 +19,20 @@ LONG_BREAK_MIN = 20
 
 window = Tk()
 window.title("Pomodoro study tool")
+window.config(padx=100, pady=50)
+
+#create canvas and saves the image directory
+canvas = Canvas(width=200, height=224)
+tomato_img = PhotoImage(file="tomato.png")
+
+#create the image and text on the canvas
+canvas.create_image(102,112, image=tomato_img)
+canvas.create_text(102,112, text="00:00")
+
+
+canvas.pack()
+
+
+
 
 window.mainloop()
