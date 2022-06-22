@@ -10,20 +10,34 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 
-# ---------------------------- TIMER RESET ------------------------------- # 
 
-# ---------------------------- TIMER MECHANISM ------------------------------- # 
+#  TIMER MECHANISM  #
 
 def start_timer():
-    count_down(300)
+    work_time = 30
+    count_down(work_time)
+    window.config(bg=PINK)
+    canvas.config(bg=PINK)
+    timer_label.config(bg=PINK, text="Timer")
 
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+def rest():
+    short_rest = SHORT_BREAK_MIN * 60
+    count_down(short_rest)
+    timer_label.config(text="Break")
+    window.config(bg=YELLOW)
+    canvas.config(bg=YELLOW)
+    timer_label.config(bg=YELLOW)
+# COUNTDOWN MECHANISM  #
 
 def count_down(count):
 
     count_min = math.floor(count/60)
     count_sec = count % 60
+    if count_sec < 10:
+         count_sec = f"0{count_sec}"
+
+
 
 
     canvas.itemconfig(timer_text, text=f"{count_min}: {count_sec}")
@@ -31,7 +45,7 @@ def count_down(count):
         window.after(1000, count_down, count - 1)
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+# UI SETUP  #
 
 window = Tk()
 window.title("Pomodoro study tool")
@@ -57,7 +71,7 @@ check_mark_label.grid(column=2, row=3)
 #buttons
 start_button = Button(text="Start", command=start_timer)
 start_button.grid(column=1, row=3)
-reset_button = Button(text="Reset")
+reset_button = Button(text="Break", command=rest)
 reset_button.grid(column=3, row=3)
 
 #canvas grid (the image)
